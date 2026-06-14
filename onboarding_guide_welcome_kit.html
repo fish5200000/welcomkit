@@ -1,0 +1,252 @@
+
+<style>
+  h2.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
+  :root{--brand-navy:#29415B;--brand-navy-light:#EEF1F5;--brand-navy-mid:#8498AD;--brand-brown:#C3A37A;--brand-brown-light:#F5EFE7;--brand-brown-mid:#D9C4A8;}
+  .ob-wrap{max-width:660px;margin:0 auto;padding:1.5rem 0;font-size:15px;color:var(--color-text-primary);}
+  .ob-tag{display:inline-block;background:var(--brand-brown-light);color:var(--brand-navy);font-size:12px;padding:3px 12px;border-radius:20px;margin-bottom:10px;font-weight:500;}
+  .ob-title{font-size:22px;font-weight:500;margin:0 0 4px;color:var(--brand-navy);}
+  .ob-sub{font-size:14px;color:var(--color-text-secondary);margin:0 0 1.5rem;}
+  .ob-nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.5rem;}
+  .ob-nav button{background:transparent;border:0.5px solid var(--color-border-secondary);border-radius:20px;padding:6px 16px;font-size:13px;cursor:pointer;color:var(--color-text-secondary);transition:all 0.15s;}
+  .ob-nav button.active{background:var(--brand-navy);border-color:var(--brand-navy);color:#fff;font-weight:500;}
+  .ob-nav button:hover:not(.active){background:var(--brand-navy-light);color:var(--brand-navy);}
+  .ob-section{display:none;}
+  .ob-section.show{display:block;}
+  .ob-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.25rem;margin-bottom:12px;}
+  .ob-card-title{font-size:14px;font-weight:500;margin:0 0 10px;display:flex;align-items:center;gap:8px;color:var(--brand-navy);}
+  .ob-card-body{font-size:13px;color:var(--color-text-secondary);line-height:1.7;margin:0;}
+  .ob-step{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px;}
+  .ob-step-num{width:28px;height:28px;border-radius:50%;background:var(--brand-navy);color:#fff;font-size:12px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .ob-step-content{font-size:13px;color:var(--color-text-secondary);line-height:1.7;padding-top:4px;}
+  .ob-step-content strong{color:var(--brand-navy);font-weight:500;}
+  .ob-rule{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;font-size:13px;color:var(--color-text-secondary);line-height:1.6;}
+  .ob-dot{width:6px;height:6px;border-radius:50%;background:var(--brand-brown);flex-shrink:0;margin-top:6px;}
+  .mission-box{background:var(--brand-navy);border-radius:var(--border-radius-lg);padding:1.25rem 1.5rem;margin-bottom:12px;}
+  .mission-quote{font-size:16px;font-weight:500;color:#fff;line-height:1.6;margin:0 0 6px;}
+  .mission-note{font-size:12px;color:var(--brand-brown-mid);margin:0;}
+  .deco-bar{width:32px;height:3px;background:var(--brand-brown);border-radius:2px;margin-bottom:10px;}
+  .client-block{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;margin-bottom:12px;}
+  .client-header{background:var(--brand-navy);padding:10px 14px;display:flex;align-items:center;gap:8px;}
+  .client-name{font-size:14px;font-weight:500;color:#fff;}
+  .client-body{padding:10px 14px;}
+  .client-row{display:flex;align-items:flex-start;gap:8px;padding:6px 0;border-bottom:0.5px solid var(--color-border-tertiary);}
+  .client-row:last-child{border-bottom:none;}
+  .client-label{min-width:90px;color:var(--color-text-secondary);font-size:12px;padding-top:2px;}
+  .client-tags{display:flex;flex-wrap:wrap;gap:4px;}
+  .tag-ad{display:inline-block;background:var(--brand-navy-light);color:var(--brand-navy);font-size:11px;padding:2px 8px;border-radius:10px;}
+  .tag-dev{display:inline-block;background:var(--brand-brown-light);color:var(--brand-navy);font-size:11px;padding:2px 8px;border-radius:10px;}
+  .time-highlight{background:var(--brand-navy-light);border-radius:var(--border-radius-md);padding:10px 14px;margin-bottom:10px;font-size:13px;color:var(--color-text-secondary);line-height:1.7;}
+  .time-highlight a{color:var(--brand-navy);font-weight:500;text-decoration:none;}
+  .tool-row{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:0.5px solid var(--color-border-tertiary);}
+  .tool-row:last-child{border-bottom:none;}
+  .tool-icon{width:34px;height:34px;border-radius:var(--border-radius-md);background:var(--brand-navy-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--brand-navy);font-size:16px;}
+  .tool-info{flex:1;}
+  .tool-name{font-size:13px;font-weight:500;color:var(--brand-navy);margin-bottom:2px;}
+  .tool-desc{font-size:12px;color:var(--color-text-secondary);line-height:1.5;}
+  .tool-badge{display:inline-block;background:var(--brand-navy);color:#fff;font-size:10px;padding:1px 7px;border-radius:10px;margin-left:6px;vertical-align:middle;}
+  .portal-section{margin-bottom:14px;}
+  .portal-header{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:var(--brand-navy);margin-bottom:8px;padding-bottom:6px;border-bottom:1.5px solid var(--brand-brown);}
+  .portal-link{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:var(--border-radius-md);text-decoration:none;transition:background 0.12s;margin-bottom:4px;}
+  .portal-link:hover{background:var(--brand-navy-light);}
+  .portal-link-icon{width:28px;height:28px;border-radius:6px;background:var(--brand-brown-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px;color:var(--brand-navy);}
+  .portal-link-text{font-size:13px;color:var(--brand-navy);}
+  .portal-link-sub{font-size:11px;color:var(--color-text-secondary);margin-top:1px;}
+  .ob-footer{margin-top:2rem;padding-top:1rem;border-top:0.5px solid var(--color-border-tertiary);font-size:13px;color:var(--color-text-secondary);display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .ask-btn{background:transparent;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);padding:7px 14px;font-size:13px;cursor:pointer;color:var(--color-text-secondary);display:flex;align-items:center;gap:6px;}
+  .ask-btn:hover{background:var(--brand-navy-light);color:var(--brand-navy);}
+</style>
+
+<div class="ob-wrap">
+  <h2 class="sr-only">公益策略顧問有限公司新夥伴 Welcome Kit，包含歡迎、我們的工作、客戶清單、工具清單與資料傳送門。</h2>
+
+  <div style="border-left:3px solid var(--brand-brown);padding-left:14px;margin-bottom:1.5rem;">
+    <div class="ob-tag">新夥伴加入指南</div>
+    <p class="ob-title">Welcome Kit</p>
+    <p class="ob-sub">很高興你加入公益策略顧問！這份 Kit 幫你快速上手我們的工作方式</p>
+  </div>
+
+  <div class="ob-nav">
+    <button class="active" onclick="showTab('welcome',this)">👋 歡迎</button>
+    <button onclick="showTab('work',this)">🌿 我們的工作</button>
+    <button onclick="showTab('clients',this)">📋 客戶清單</button>
+    <button onclick="showTab('tools',this)">🛠 工具清單</button>
+    <button onclick="showTab('portal',this)">🔗 資料傳送門</button>
+  </div>
+
+  <div id="welcome" class="ob-section show">
+    <div class="mission-box">
+      <div class="deco-bar"></div>
+      <p class="mission-quote">「Doing Good by Doing Well」</p>
+      <p class="mission-note">我們負責建構穩定的資金，讓 NPO 能全心專注服務現場。</p>
+    </div>
+    <div class="ob-card">
+      <div class="ob-card-title"><i class="ti ti-building-community" aria-hidden="true"></i> 關於公益策略顧問</div>
+      <p class="ob-card-body">我們是一家以 NPO（非營利組織）為服務對象的策略顧問公司，現行服務 9 間非營利組織，議題橫跨家庭、教育、移工、媒體、身障等，合作成效累計破 4,000 萬。</p>
+    </div>
+    <div class="ob-card">
+      <div class="ob-card-title"><i class="ti ti-clock" aria-hidden="true"></i> 工作時間</div>
+      <div class="time-highlight">
+        依照時數<strong style="color:var(--brand-navy)">自由心證</strong>，工時請填寫於
+        <a href="https://docs.google.com/spreadsheets/d/10jnLNt70dOxYyKBIflSi3D05J0x9-MpDNUhOlz8U1uo/edit?usp=sharing" target="_blank">工時記錄表 <i class="ti ti-external-link" style="font-size:12px;" aria-hidden="true"></i></a>
+      </div>
+      <div class="ob-rule" style="margin-bottom:6px;"><div class="ob-dot"></div><div>雙週團隊會議（視情形），更新彼此進度與核對內容，有需求可增減。</div></div>
+      <div class="ob-rule" style="margin-bottom:0;"><div class="ob-dot"></div><div>訊息溝通可以隨時聯繫，<strong style="color:var(--brand-navy)">非上班時間不一定要馬上回復，沒關係！</strong></div></div>
+    </div>
+    <div class="ob-card">
+      <div class="ob-card-title"><i class="ti ti-arrows-left-right" aria-hidden="true"></i> 我們服務兩端</div>
+      <p class="ob-card-body">
+        <strong style="color:var(--brand-navy)">非營利組織：</strong>募款開發、廣告代操、平台開發、捐款人經營。<br><br>
+        <strong style="color:var(--brand-navy)">捐贈者 / 企業 / 基金會：</strong>捐贈策略、專案管理、效益評估。
+      </p>
+    </div>
+  </div>
+
+  <div id="work" class="ob-section">
+    <div class="ob-card">
+      <div class="ob-card-title"><i class="ti ti-speakerphone" aria-hidden="true"></i> 募款開發</div>
+      <p class="ob-card-body" style="margin-bottom:10px;">協助 NPO 建構多元且高效的捐款收入，包含：</p>
+      <div style="display:flex;flex-wrap:wrap;gap:5px;">
+        <span class="tag-ad">Facebook 廣告</span><span class="tag-ad">Line 愛心捐廣告</span>
+        <span class="tag-dev">Line 愛心捐專區</span><span class="tag-ad">街口廣告</span>
+        <span class="tag-dev">街口專區</span><span class="tag-dev">官網捐款專區</span>
+        <span class="tag-ad">社群圖文製作</span><span class="tag-ad">影音製作</span>
+        <span class="tag-dev">Line OA 開發</span><span class="tag-ad">受眾再行銷</span>
+      </div>
+    </div>
+    <div class="ob-card">
+      <div class="ob-card-title"><i class="ti ti-route" aria-hidden="true"></i> 支持者轉化路徑</div>
+      <p class="ob-card-body" style="margin-bottom:12px;">我們的核心策略是引導支持者走過四個階段：</p>
+      <div class="ob-step"><div class="ob-step-num">1</div><div class="ob-step-content"><strong>認識</strong> — 讓更多人看見議題與組織</div></div>
+      <div class="ob-step"><div class="ob-step-num">2</div><div class="ob-step-content"><strong>認同</strong> — 從「知道」變成「在意」</div></div>
+      <div class="ob-step"><div class="ob-step-num">3</div><div class="ob-step-content"><strong>參與</strong> — 從「在意」轉為「具體捐款或行動」</div></div>
+      <div class="ob-step" style="margin-bottom:0;"><div class="ob-step-num">4</div><div class="ob-step-content"><strong>長期支持</strong> — 讓一次參與變成定期定額的穩定陪伴</div></div>
+    </div>
+  </div>
+
+  <div id="clients" class="ob-section">
+    <div class="client-block">
+      <div class="client-header"><i class="ti ti-building" style="font-size:15px;color:var(--brand-brown-mid);" aria-hidden="true"></i><span class="client-name">任林</span></div>
+      <div class="client-body">
+        <div class="client-row"><span class="client-label">官網</span><div class="client-tags"><span class="tag-dev">捐款專區開發</span></div></div>
+        <div class="client-row"><span class="client-label">街口</span><div class="client-tags"><span class="tag-ad">廣告代操</span></div></div>
+        <div class="client-row"><span class="client-label">Line 愛心捐</span><div class="client-tags"><span class="tag-ad">廣告代操</span><span class="tag-dev">專區開發</span></div></div>
+        <div class="client-row"><span class="client-label">Facebook</span><div class="client-tags"><span class="tag-ad">廣告代操</span></div></div>
+      </div>
+    </div>
+    <div class="client-block">
+      <div class="client-header"><i class="ti ti-building" style="font-size:15px;color:var(--brand-brown-mid);" aria-hidden="true"></i><span class="client-name">RE-THINK</span></div>
+      <div class="client-body">
+        <div class="client-row"><span class="client-label">Line 愛心捐</span><div class="client-tags"><span class="tag-ad">廣告代操</span></div></div>
+        <div class="client-row"><span class="client-label">街口</span><div class="client-tags"><span class="tag-ad">廣告代操</span><span class="tag-dev">專區開發</span></div></div>
+      </div>
+    </div>
+    <div style="display:flex;gap:12px;margin-top:6px;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--color-text-secondary);"><span class="tag-ad">藍底</span> 廣告代操</div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--color-text-secondary);"><span class="tag-dev">米底</span> 專區 / 網站開發</div>
+    </div>
+  </div>
+
+  <div id="tools" class="ob-section">
+    <div class="ob-card">
+      <div class="tool-row">
+        <div class="tool-icon"><i class="ti ti-message-circle" aria-hidden="true"></i></div>
+        <div class="tool-info"><div class="tool-name">Line <span class="tool-badge">主要通訊</span></div><div class="tool-desc">上班時間盡快回覆</div></div>
+      </div>
+      <div class="tool-row">
+        <div class="tool-icon"><i class="ti ti-notebook" aria-hidden="true"></i></div>
+        <div class="tool-info"><div class="tool-name">Notion</div><div class="tool-desc">會議記錄、想法 / 資料蒐集整理、時程表</div></div>
+      </div>
+      <div class="tool-row">
+        <div class="tool-icon"><i class="ti ti-folder" aria-hidden="true"></i></div>
+        <div class="tool-info"><div class="tool-name">Google Drive</div><div class="tool-desc">所有文件與素材統一存放</div></div>
+      </div>
+      <div class="tool-row">
+        <div class="tool-icon"><i class="ti ti-calendar" aria-hidden="true"></i></div>
+        <div class="tool-info"><div class="tool-name">Google 行事曆</div><div class="tool-desc">會議時程邀請</div></div>
+      </div>
+      <div class="tool-row">
+        <div class="tool-icon"><i class="ti ti-clock" aria-hidden="true"></i></div>
+        <div class="tool-info"><div class="tool-name">工時記錄表</div><div class="tool-desc">每次工作後（提前安排）填寫時數</div></div>
+      </div>
+      <div class="tool-row">
+        <div class="tool-icon"><i class="ti ti-heart" aria-hidden="true"></i></div>
+        <div class="tool-info"><div class="tool-name">Line 愛心捐後台</div><div class="tool-desc">捐款專案設定與成效追蹤</div></div>
+      </div>
+      <div class="tool-row">
+        <div class="tool-icon"><i class="ti ti-chart-bar" aria-hidden="true"></i></div>
+        <div class="tool-info"><div class="tool-name">街口後台</div><div class="tool-desc">廣告與專區管理</div></div>
+      </div>
+      <div class="tool-row">
+        <div class="tool-icon"><i class="ti ti-brush" aria-hidden="true"></i></div>
+        <div class="tool-info"><div class="tool-name">Canva / 設計工具</div><div class="tool-desc">圖文素材製作</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="portal" class="ob-section">
+    <div class="ob-card">
+      <div class="portal-section">
+        <div class="portal-header"><i class="ti ti-notebook" style="font-size:16px;" aria-hidden="true"></i> Notion</div>
+        <a class="portal-link" href="https://www.notion.so/221b3d6fcffd80c5be5cd9fa237c46f7?v=221b3d6fcffd809eb216000c14802d88&source=copy_link" target="_blank">
+          <div class="portal-link-icon"><i class="ti ti-calendar-event" aria-hidden="true"></i></div>
+          <div><div class="portal-link-text">會議記錄與時程表 <i class="ti ti-external-link" style="font-size:11px;" aria-hidden="true"></i></div><div class="portal-link-sub">所有會議紀錄、雙週進度與行程安排</div></div>
+        </a>
+        <a class="portal-link" href="https://www.notion.so/RE-THINK-37fb3d6fcffd80988482fc28b51e54f3?source=copy_link" target="_blank">
+          <div class="portal-link-icon"><i class="ti ti-building" aria-hidden="true"></i></div>
+          <div><div class="portal-link-text">RE-THINK 募款專案 <i class="ti ti-external-link" style="font-size:11px;" aria-hidden="true"></i></div><div class="portal-link-sub">RE-THINK 客戶專案資料與進度</div></div>
+        </a>
+        <a class="portal-link" href="https://www.notion.so/re-think-36cb3d6fcffd80e6b470c3c42b3cc9aa?source=copy_link" target="_blank">
+          <div class="portal-link-icon"><i class="ti ti-edit" aria-hidden="true"></i></div>
+          <div><div class="portal-link-text">RE-THINK 個人整理頁 <i class="ti ti-external-link" style="font-size:11px;" aria-hidden="true"></i></div><div class="portal-link-sub">自行整理 RE-THINK 相關想法與筆記</div></div>
+        </a>
+      </div>
+      <div class="portal-section">
+        <div class="portal-header"><i class="ti ti-brand-google-drive" style="font-size:16px;" aria-hidden="true"></i> Google Drive</div>
+        <a class="portal-link" href="https://drive.google.com/drive/folders/1BBrEODOtx8mHimWM9mD8DUPGPc4LZgL9?usp=drive_link" target="_blank">
+          <div class="portal-link-icon"><i class="ti ti-building" aria-hidden="true"></i></div>
+          <div><div class="portal-link-text">RE-THINK 組織提供資料 <i class="ti ti-external-link" style="font-size:11px;" aria-hidden="true"></i></div><div class="portal-link-sub">組織提供的背景資料與參考文件</div></div>
+        </a>
+        <a class="portal-link" href="https://drive.google.com/drive/folders/1sXhzWDslE1HLVGdnXhjRhQciOspjB-XG?usp=drive_link" target="_blank">
+          <div class="portal-link-icon"><i class="ti ti-file-analytics" aria-hidden="true"></i></div>
+          <div><div class="portal-link-text">非營利組織公開財報＋工作報告 <i class="ti ti-external-link" style="font-size:11px;" aria-hidden="true"></i></div><div class="portal-link-sub">各 NPO 財務與成果報告資料夾</div></div>
+        </a>
+        <a class="portal-link" href="https://drive.google.com/drive/folders/1LS8XZokt3RalhWxwQXA4_yNvBX4tAH0K?usp=sharing" target="_blank">
+          <div class="portal-link-icon"><i class="ti ti-speakerphone" aria-hidden="true"></i></div>
+          <div><div class="portal-link-text">公益募款 <i class="ti ti-external-link" style="font-size:11px;" aria-hidden="true"></i></div><div class="portal-link-sub">募款相關素材、企劃與執行資料</div></div>
+        </a>
+        <a class="portal-link" href="https://docs.google.com/presentation/d/1wKfJ52TVcuMEYOKdier8rCkGbFdEKX547VcpOXiQgxE/edit?usp=drive_link" target="_blank">
+          <div class="portal-link-icon"><i class="ti ti-heart" aria-hidden="true"></i></div>
+          <div><div class="portal-link-text">Line 愛心捐募款經驗分享 <i class="ti ti-external-link" style="font-size:11px;" aria-hidden="true"></i></div><div class="portal-link-sub">操作 Line 愛心捐的實戰心得簡報</div></div>
+        </a>
+      </div>
+      <div class="portal-section">
+        <div class="portal-header"><i class="ti ti-file-text" style="font-size:16px;" aria-hidden="true"></i> 分析文件</div>
+        <a class="portal-link" href="https://docs.google.com/document/d/1AwJmFzKZarQL2Z8GKI387y-joxhCSQy2_3lGutY1rGo/edit?usp=sharing" target="_blank">
+          <div class="portal-link-icon"><i class="ti ti-chart-line" aria-hidden="true"></i></div>
+          <div><div class="portal-link-text">RE-THINK 分析檔案 <i class="ti ti-external-link" style="font-size:11px;" aria-hidden="true"></i></div><div class="portal-link-sub">可用藍字新增內容，協助補齊資料</div></div>
+        </a>
+      </div>
+      <div class="portal-section" style="margin-bottom:0;">
+        <div class="portal-header"><i class="ti ti-table" style="font-size:16px;" aria-hidden="true"></i> 工時記錄</div>
+        <a class="portal-link" href="https://docs.google.com/spreadsheets/d/10jnLNt70dOxYyKBIflSi3D05J0x9-MpDNUhOlz8U1uo/edit?usp=sharing" target="_blank">
+          <div class="portal-link-icon"><i class="ti ti-clock" aria-hidden="true"></i></div>
+          <div><div class="portal-link-text">工時記錄表 <i class="ti ti-external-link" style="font-size:11px;" aria-hidden="true"></i></div><div class="portal-link-sub">每次工作後（提前安排）填寫時數</div></div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="ob-footer">
+    <span>還有內容想補充？</span>
+    <button class="ask-btn" onclick="sendPrompt('幫我在實習生手冊裡補充：')">補充內容 ↗</button>
+  </div>
+</div>
+
+<script>
+function showTab(id,btn){
+  document.querySelectorAll('.ob-section').forEach(s=>s.classList.remove('show'));
+  document.querySelectorAll('.ob-nav button').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('show');
+  btn.classList.add('active');
+}
+</script>
